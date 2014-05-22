@@ -1,7 +1,8 @@
 IT eBooks Workflow for Alfred 2.0
 ======
-I developed this alfred workflow for my personal use. It's a workflow for Alfred 2.0 which let you quickly find free download IT ebooks from http://it-ebooks.info
 [Download](https://github.com/yankuangshi/alfred-it-ebooks-workflow/blob/master/IT%20eBooks%20Finder.alfredworkflow?raw=true)
+
+I developed this alfred workflow for my personal use. It's a workflow for Alfred 2.0 which let you quickly find free download IT ebooks from http://it-ebooks.info
 
 Usage
 ======
