@@ -2,12 +2,12 @@ IT eBooks Workflow for Alfred 2.0
 ======
 [Download](https://github.com/yankuangshi/alfred-it-ebooks-workflow/blob/master/IT%20eBooks%20Finder.alfredworkflow?raw=true)
 
-I developed this alfred workflow for my personal use. It's a workflow for Alfred 2.0 which let you quickly find free download IT ebooks from http://it-ebooks.info
+This workflow was created to easily enable the user to find quickly free download IT ebooks from http://it-ebooks.info
 
-Usage
+Feature
 ======
 Type `eb` followed by a keyword will show you the results for the query.
-For example, `eb java` will search for ebooks about java from the site and have them returned to Alfred.
+For example, `eb java` will search for ebooks about java from the site and have them returned to Alfred. Type `⏎` will redirect you to the download page.
 
 Screenshot
 ======
