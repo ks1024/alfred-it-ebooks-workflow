@@ -26,9 +26,10 @@ if ($total > 0):
         $year = $data_book->Year;
         $page = $data_book->Page;
         $publisher = $data_book->Publisher;
+        $download_link = $data_book->Download;
         
         $wf->result("itebooks-".$id,
-                     "http://it-ebooks.info/search/?q=".$isbn."&type=isbn",
+                     "$download_link",
                      "$title",
                      "by $author | Publisher: $publisher | Pages: $page | Year: $year | ISBN: $isbn ",
                      "icon.png");
