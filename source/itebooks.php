@@ -1,13 +1,14 @@
 <?php
 
-define('BASE_URL', 'http://it-ebooks-api.info/v1/');
+define('API_URL', 'http://it-ebooks-api.info/v1/');
+define('SITE_URL', 'http://it-ebooks.info');
 
 require_once('workflows.php');
 
 $wf = new Workflows();
 $q = trim(strtolower($argv[1]));
 
-$url = BASE_URL.'search/'.$q;
+$url = API_URL.'search/'.$q;
 $json = $wf->request($url);
 $data = json_decode($json);
 
@@ -19,7 +20,20 @@ if ($total > 0):
         $id = $book->ID;
         $title = $book->Title;
         $isbn = $book->isbn;
-        $url_book = BASE_URL.'book/'.$id;
+        // get html page content
+        $args = array(
+            'q'     => $isbn,
+            'type'  => 'isbn'
+        );
+        $params = http_build_query($args);
+        $url_isbn = SITE_URL.'/search/?'.$params;
+        $html_data = file_get_contents($url_isbn);
+        // pattern /book/n¡ã/
+        $pattern = '/\/book\/[0-9]+\//';
+        preg_match($pattern, $html_data, $matches);
+        $url_book_details = SITE_URL.$matches[0];
+        
+        $url_book = API_URL.'book/'.$id;
         $json_book = $wf->request($url_book);
         $data_book = json_decode($json_book);
         $author = $data_book->Author;
@@ -29,11 +43,11 @@ if ($total > 0):
         $download_link = $data_book->Download;
         
         $wf->result("itebooks-".$id,
-                     "$download_link",
+                     "$url_book_details",
                      "$title",
                      "by $author | Publisher: $publisher | Pages: $page | Year: $year | ISBN: $isbn ",
                      "icon.png");
-    endforeach;    
+    endforeach;
 else:
     $wf->result('itebooks.noresult', 
                 'http://it-ebooks-search.info/search?q='.$q.'&type=title', 
